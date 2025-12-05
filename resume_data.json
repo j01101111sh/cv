@@ -1,0 +1,110 @@
+{
+    "profile": {
+        "name": "Alex Jordan",
+        "title": "Product Designer",
+        "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4",
+        "initials": "AJ"
+    },
+    "contact": [
+        {
+            "icon": "fas fa-envelope",
+            "text": "alex.jordan@example.com",
+            "link": "mailto:alex.jordan@example.com"
+        },
+        {
+            "icon": "fas fa-phone",
+            "text": "+1 (555) 123-4567",
+            "link": "tel:+15551234567"
+        },
+        {
+            "icon": "fas fa-map-marker-alt",
+            "text": "San Francisco, CA",
+            "link": null
+        },
+        {
+            "icon": "fab fa-linkedin-in",
+            "text": "linkedin.com/in/alexj",
+            "link": "https://linkedin.com/in/alexj"
+        },
+        {
+            "icon": "fas fa-globe",
+            "text": "alexjordan.design",
+            "link": "https://alexjordan.design"
+        }
+    ],
+    "education": [
+        {
+            "degree": "Master of Design",
+            "school": "California College of the Arts",
+            "year": "2018 - 2020"
+        },
+        {
+            "degree": "BS in Computer Science",
+            "school": "University of Michigan",
+            "year": "2014 - 2018"
+        }
+    ],
+    "skills": [
+        "Figma",
+        "Adobe XD",
+        "HTML/CSS",
+        "React JS",
+        "User Research",
+        "Prototyping",
+        "Wireframing"
+    ],
+    "interests": "Photography, Minimalist Architecture, Hiking, Indie Game Development, Coffee Brewing.",
+    "summary": "Innovative Product Designer with 5+ years of experience transforming complex problems into elegant, user-centric solutions. Proven track record of leading design for high-traffic web applications. Passionate about bridging the gap between design and engineering to build scalable products.",
+    "experience": [
+        {
+            "role": "Senior Product Designer",
+            "company": "TechFlow Solutions",
+            "location": "San Francisco, CA",
+            "period": "2021 - Present",
+            "colorClass": "bg-blue-500",
+            "periodClass": "text-blue-600 bg-blue-50",
+            "achievements": [
+                "Led the redesign of the core SaaS dashboard, resulting in a 25% increase in user engagement and a 15% drop in churn rate.",
+                "Established a comprehensive Design System utilized by 5 cross-functional teams, reducing frontend development time by 30%.",
+                "Mentored 3 junior designers and conducted weekly design critiques to foster a culture of continuous feedback."
+            ]
+        },
+        {
+            "role": "UX/UI Designer",
+            "company": "Creative Pulse Agency",
+            "location": "Remote",
+            "period": "2019 - 2021",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "achievements": [
+                "Collaborated with clients to deliver responsive e-commerce websites for various fashion and retail brands.",
+                "Conducted A/B testing on landing pages which increased conversion rates by an average of 12% across client projects.",
+                "Created high-fidelity interactive prototypes in Figma for stakeholder presentations."
+            ]
+        },
+        {
+            "role": "Frontend Developer Intern",
+            "company": "StartUp Inc.",
+            "location": "Ann Arbor, MI",
+            "period": "2018 - 2019",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "achievements": [
+                "Assisted in the implementation of the company's marketing site using React and Tailwind CSS.",
+                "Optimized image assets and code splitting, improving page load speeds by 40%."
+            ]
+        }
+    ],
+    "projects": [
+        {
+            "title": "E-Commerce UI Kit",
+            "description": "A complete open-source design system for online stores.",
+            "tags": ["Figma", "React"]
+        },
+        {
+            "title": "TaskMaster App",
+            "description": "Productivity application focused on deep work techniques.",
+            "tags": ["Mobile Design", "UX"]
+        }
+    ]
+}
