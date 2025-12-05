@@ -51,12 +51,6 @@
             width: 100% !important;
         }
         
-        /* Force the profile image container to be larger during PDF generation */
-        .pdf-capture .w-32.h-32 {
-            width: 200px !important;
-            height: 200px !important;
-        }
-        
         /* Page Break Utilities */
         .avoid-break {
             page-break-inside: avoid;
@@ -218,7 +212,7 @@
             element.classList.add('pdf-capture');
 
             const opt = {
-                margin:       0,
+                margin:       [0.2, 0], 
                 filename:     'Resume.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { 
