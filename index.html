@@ -39,6 +39,21 @@
             background: #94a3b8; 
         }
 
+        /* Styles specifically for the PDF capture moment */
+        .pdf-capture {
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+        
+        /* Page Break Utilities */
+        .avoid-break {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
         /* Print Specific Styles (Fallback) */
         @media print {
             body {
@@ -89,25 +104,37 @@
             btn.disabled = true;
             btn.classList.add('opacity-75', 'cursor-not-allowed');
 
+            // Apply cleaner styles for PDF generation (removes shadows, rounded corners)
+            element.classList.add('pdf-capture');
+
             const opt = {
                 margin:       0,
                 filename:     'Alex_Jordan_Resume.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, useCORS: true, logging: false },
-                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true, 
+                    scrollY: 0, 
+                    logging: false 
+                },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+                // Enable CSS-based page break detection
+                pagebreak:    { mode: ['css', 'legacy'] }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
-                // Reset button state
+                // Reset button state and styles
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
                 btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                element.classList.remove('pdf-capture');
             }).catch(err => {
                 console.error(err);
                 alert('Error generating PDF. Please try using the browser print option (Ctrl+P).');
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
                 btn.classList.remove('opacity-75', 'cursor-not-allowed');
+                element.classList.remove('pdf-capture');
             });
         }
     </script>
@@ -128,7 +155,7 @@
         <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 print:bg-slate-900 print:text-white">
             
             <!-- Header/Profile -->
-            <div class="text-center md:text-left">
+            <div class="text-center md:text-left avoid-break">
                 <!-- Profile Image Placeholder -->
                 <div class="w-32 h-32 mx-auto md:mx-0 bg-slate-700 rounded-full mb-6 overflow-hidden border-4 border-slate-600 relative">
                      <!-- Using Dicebear for a reliable avatar, fallback to initials if it fails -->
@@ -140,12 +167,12 @@
                     <div class="absolute inset-0 hidden items-center justify-center text-3xl font-bold bg-slate-800 text-white">AJ</div>
                 </div>
 
-                <h1 class="text-3xl font-bold tracking-tight mb-2">Josh Odell</h1>
-                <p class="text-blue-400 font-medium text-lg uppercase tracking-wide">Data Analytics Leader</p>
+                <h1 class="text-3xl font-bold tracking-tight mb-2">Alex Jordan</h1>
+                <p class="text-blue-400 font-medium text-lg uppercase tracking-wide">Product Designer</p>
             </div>
 
             <!-- Contact Info -->
-            <div>
+            <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Contact</h3>
                 <ul class="space-y-3 text-sm">
                     <li class="flex items-center gap-3 group">
@@ -182,15 +209,15 @@
             </div>
 
             <!-- Education -->
-            <div>
+            <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Education</h3>
                 <div class="space-y-4">
-                    <div>
+                    <div class="avoid-break">
                         <h4 class="font-bold text-white">Master of Design</h4>
                         <p class="text-slate-400 text-sm">California College of the Arts</p>
                         <p class="text-slate-500 text-xs mt-1">2018 - 2020</p>
                     </div>
-                    <div>
+                    <div class="avoid-break">
                         <h4 class="font-bold text-white">BS in Computer Science</h4>
                         <p class="text-slate-400 text-sm">University of Michigan</p>
                         <p class="text-slate-500 text-xs mt-1">2014 - 2018</p>
@@ -199,7 +226,7 @@
             </div>
 
             <!-- Hard Skills -->
-            <div>
+            <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Skills</h3>
                 <div class="flex flex-wrap gap-2">
                     <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">Figma</span>
@@ -213,7 +240,7 @@
             </div>
 
             <!-- Interests (Optional) -->
-            <div>
+            <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Interests</h3>
                 <p class="text-slate-400 text-sm leading-relaxed">
                     Photography, Minimalist Architecture, Hiking, Indie Game Development, Coffee Brewing.
@@ -225,7 +252,7 @@
         <section class="w-full md:w-2/3 p-8 md:p-12 bg-white">
             
             <!-- Summary -->
-            <div class="mb-10">
+            <div class="mb-10 avoid-break">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
                     <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
                         <i class="fas fa-user"></i>
@@ -247,7 +274,7 @@
                 </h2>
 
                 <!-- Job 1 -->
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200">
+                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                         <h3 class="text-lg font-bold text-slate-800">Senior Product Designer</h3>
@@ -262,7 +289,7 @@
                 </div>
 
                 <!-- Job 2 -->
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200">
+                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                         <h3 class="text-lg font-bold text-slate-800">UX/UI Designer</h3>
@@ -277,7 +304,7 @@
                 </div>
 
                 <!-- Job 3 -->
-                <div class="relative pl-4 border-l-2 border-slate-200">
+                <div class="relative pl-4 border-l-2 border-slate-200 avoid-break">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                         <h3 class="text-lg font-bold text-slate-800">Frontend Developer Intern</h3>
@@ -292,7 +319,7 @@
             </div>
 
             <!-- Projects -->
-            <div>
+            <div class="avoid-break">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
                     <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
                         <i class="fas fa-rocket"></i>
@@ -302,7 +329,7 @@
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- Project Card 1 -->
-                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all">
+                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all avoid-break">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">E-Commerce UI Kit</h3>
                             <!-- <i class="fas fa-external-link-alt text-slate-400 text-xs"></i> -->
@@ -315,7 +342,7 @@
                     </div>
 
                     <!-- Project Card 2 -->
-                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all">
+                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all avoid-break">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">TaskMaster App</h3>
                             <!-- <i class="fas fa-external-link-alt text-slate-400 text-xs"></i> -->
