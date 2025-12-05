@@ -13,8 +13,8 @@
         },
         {
             "icon": "fas fa-phone",
-            "text": "+1 (555) 123-4567",
-            "link": "tel:+15551234567"
+            "text": "+1 (402) 819-8937",
+            "link": "tel:+14028198937"
         },
         {
             "icon": "fas fa-map-marker-alt",
@@ -23,21 +23,16 @@
         },
         {
             "icon": "fab fa-linkedin-in",
-            "text": "linkedin.com/in/alexj",
-            "link": "https://linkedin.com/in/alexj"
+            "text": "linkedin.com/in/joshua-t-odell/",
+            "link": "https://www.linkedin.com/in/joshua-t-odell/"
         },
         {
             "icon": "fas fa-globe",
-            "text": "alexjordan.design",
-            "link": "https://alexjordan.design"
+            "text": "joshodell.com",
+            "link": "https://www.joshodell.com"
         }
     ],
     "education": [
-        {
-            "degree": "Master of Design",
-            "school": "California College of the Arts",
-            "year": "2018 - 2020"
-        },
         {
             "degree": "BS in Computer Science",
             "school": "University of Michigan",
