@@ -1,15 +1,15 @@
 {
     "profile": {
-        "name": "Alex Jordan",
-        "title": "Product Designer",
-        "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4",
-        "initials": "AJ"
+        "name": "Josh Odell",
+        "title": "Analytics Leader",
+        "avatarUrl": "",
+        "initials": "JO"
     },
     "contact": [
         {
             "icon": "fas fa-envelope",
-            "text": "alex.jordan@example.com",
-            "link": "mailto:alex.jordan@example.com"
+            "text": "joshua.t.odell@gmail.com",
+            "link": "mailto:joshua.t.odell@gmail.com"
         },
         {
             "icon": "fas fa-phone",
@@ -18,7 +18,7 @@
         },
         {
             "icon": "fas fa-map-marker-alt",
-            "text": "San Francisco, CA",
+            "text": "Omaha, NE",
             "link": null
         },
         {
