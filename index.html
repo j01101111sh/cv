@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Resume Template</title>
     
+    <!-- Favicon (Briefcase Emoji) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💼</text></svg>">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -54,7 +57,7 @@
             break-inside: avoid;
         }
 
-        /* Print Specific Styles (Fallback) */
+        /* Print Specific Styles */
         @media print {
             body {
                 background-color: white;
@@ -94,6 +97,107 @@
             }
         }
 
+        // Fetch Data Function
+        async function fetchResumeData() {
+            try {
+                // This fetches the file 'resume_data.json' which should be in the same directory
+                const response = await fetch('resume_data.json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                renderResume(data);
+            } catch (error) {
+                console.error('Error fetching resume data:', error);
+                document.getElementById('resume-content').innerHTML = `
+                    <div class="p-8 text-center text-red-500">
+                        <h2 class="text-xl font-bold">Error Loading Data</h2>
+                        <p>Could not load 'resume_data.json'. Please ensure:</p>
+                        <ul class="text-left list-disc list-inside mt-2 text-sm">
+                            <li>The file 'resume_data.json' exists in the same folder.</li>
+                            <li>You are running this on a local server (e.g., VS Code Live Server) and not directly from the file system.</li>
+                        </ul>
+                    </div>
+                `;
+            }
+        }
+
+        // Render Function
+        function renderResume(data) {
+            // Profile
+            document.getElementById('profile-name').textContent = data.profile.name;
+            document.getElementById('profile-title').textContent = data.profile.title;
+            document.getElementById('profile-avatar').src = data.profile.avatarUrl;
+            document.getElementById('profile-initials').textContent = data.profile.initials;
+
+            // Contact
+            const contactList = document.getElementById('contact-list');
+            contactList.innerHTML = data.contact.map(item => `
+                <li class="flex items-center gap-3 group">
+                    <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
+                        <i class="${item.icon}"></i>
+                    </span>
+                    ${item.link 
+                        ? `<a href="${item.link}" class="text-slate-300 hover:text-white transition-colors">${item.text}</a>` 
+                        : `<span class="text-slate-300">${item.text}</span>`
+                    }
+                </li>
+            `).join('');
+
+            // Education
+            const educationList = document.getElementById('education-list');
+            educationList.innerHTML = data.education.map(edu => `
+                <div class="avoid-break">
+                    <h4 class="font-bold text-white">${edu.degree}</h4>
+                    <p class="text-slate-400 text-sm">${edu.school}</p>
+                    <p class="text-slate-500 text-xs mt-1">${edu.year}</p>
+                </div>
+            `).join('');
+
+            // Skills
+            const skillsList = document.getElementById('skills-list');
+            skillsList.innerHTML = data.skills.map(skill => `
+                <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">${skill}</span>
+            `).join('');
+
+            // Interests
+            document.getElementById('interests-text').textContent = data.interests;
+
+            // Summary
+            document.getElementById('summary-text').textContent = data.summary;
+
+            // Experience
+            const experienceList = document.getElementById('experience-list');
+            experienceList.innerHTML = data.experience.map(job => `
+                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full ${job.colorClass} border-4 border-white"></div>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                        <h3 class="text-lg font-bold text-slate-800">${job.role}</h3>
+                        <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded">${job.period}</span>
+                    </div>
+                    <p class="text-slate-500 italic mb-3">${job.company} • ${job.location}</p>
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
+                        ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            // Projects
+            const projectsList = document.getElementById('projects-list');
+            projectsList.innerHTML = data.projects.map(project => `
+                <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all avoid-break">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">${project.title}</h3>
+                    </div>
+                    <p class="text-sm text-slate-500 mb-3">${project.description}</p>
+                    <div class="flex gap-2">
+                        ${project.tags.map(tag => `<span class="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // PDF Download Function
         function downloadPDF() {
             const element = document.getElementById('resume-content');
             const btn = document.getElementById('download-btn');
@@ -104,12 +208,12 @@
             btn.disabled = true;
             btn.classList.add('opacity-75', 'cursor-not-allowed');
 
-            // Apply cleaner styles for PDF generation (removes shadows, rounded corners)
+            // Apply cleaner styles for PDF generation
             element.classList.add('pdf-capture');
 
             const opt = {
                 margin:       0,
-                filename:     'Alex_Jordan_Resume.pdf',
+                filename:     'Resume.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { 
                     scale: 2, 
@@ -118,25 +222,27 @@
                     logging: false 
                 },
                 jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
-                // Enable CSS-based page break detection
                 pagebreak:    { mode: ['css', 'legacy'] }
             };
 
             html2pdf().set(opt).from(element).save().then(() => {
-                // Reset button state and styles
+                // Reset button state
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
                 btn.classList.remove('opacity-75', 'cursor-not-allowed');
                 element.classList.remove('pdf-capture');
             }).catch(err => {
                 console.error(err);
-                alert('Error generating PDF. Please try using the browser print option (Ctrl+P).');
+                alert('Error generating PDF.');
                 btn.innerHTML = originalContent;
                 btn.disabled = false;
                 btn.classList.remove('opacity-75', 'cursor-not-allowed');
                 element.classList.remove('pdf-capture');
             });
         }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', fetchResumeData);
     </script>
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col items-center py-8 sm:py-12">
@@ -156,99 +262,51 @@
             
             <!-- Header/Profile -->
             <div class="text-center md:text-left avoid-break">
-                <!-- Profile Image Placeholder -->
+                <!-- Profile Image with Fallback -->
                 <div class="w-32 h-32 mx-auto md:mx-0 bg-slate-700 rounded-full mb-6 overflow-hidden border-4 border-slate-600 relative">
-                     <!-- Using Dicebear for a reliable avatar, fallback to initials if it fails -->
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4" 
-                         alt="Profile" 
+                    <img id="profile-avatar" src="" alt="Profile" 
                          class="w-full h-full object-cover"
                          crossorigin="anonymous"
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                    <div class="absolute inset-0 hidden items-center justify-center text-3xl font-bold bg-slate-800 text-white">AJ</div>
+                    <div id="profile-initials" class="absolute inset-0 hidden items-center justify-center text-3xl font-bold bg-slate-800 text-white"></div>
                 </div>
 
-                <h1 class="text-3xl font-bold tracking-tight mb-2">Alex Jordan</h1>
-                <p class="text-blue-400 font-medium text-lg uppercase tracking-wide">Product Designer</p>
+                <h1 id="profile-name" class="text-3xl font-bold tracking-tight mb-2"></h1>
+                <p id="profile-title" class="text-blue-400 font-medium text-lg uppercase tracking-wide"></p>
             </div>
 
             <!-- Contact Info -->
             <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Contact</h3>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                        <span class="text-slate-300">alex.jordan@example.com</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        <span class="text-slate-300">+1 (555) 123-4567</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </span>
-                        <span class="text-slate-300">San Francisco, CA</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
-                            <i class="fab fa-linkedin-in"></i>
-                        </span>
-                        <span class="text-slate-300">linkedin.com/in/alexj</span>
-                    </li>
-                    <li class="flex items-center gap-3 group">
-                        <span class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-blue-400">
-                            <i class="fas fa-globe"></i>
-                        </span>
-                        <span class="text-slate-300">alexjordan.design</span>
-                    </li>
+                <ul id="contact-list" class="space-y-3 text-sm">
+                    <!-- Dynamic Content -->
                 </ul>
             </div>
 
             <!-- Education -->
             <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Education</h3>
-                <div class="space-y-4">
-                    <div class="avoid-break">
-                        <h4 class="font-bold text-white">Master of Design</h4>
-                        <p class="text-slate-400 text-sm">California College of the Arts</p>
-                        <p class="text-slate-500 text-xs mt-1">2018 - 2020</p>
-                    </div>
-                    <div class="avoid-break">
-                        <h4 class="font-bold text-white">BS in Computer Science</h4>
-                        <p class="text-slate-400 text-sm">University of Michigan</p>
-                        <p class="text-slate-500 text-xs mt-1">2014 - 2018</p>
-                    </div>
+                <div id="education-list" class="space-y-4">
+                     <!-- Dynamic Content -->
                 </div>
             </div>
 
-            <!-- Hard Skills -->
+            <!-- Skills -->
             <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Skills</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">Figma</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">Adobe XD</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">HTML/CSS</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">React JS</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">User Research</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">Prototyping</span>
-                    <span class="px-3 py-1 bg-slate-800 text-xs rounded-full text-slate-300 border border-slate-700">Wireframing</span>
+                <div id="skills-list" class="flex flex-wrap gap-2">
+                     <!-- Dynamic Content -->
                 </div>
             </div>
 
-            <!-- Interests (Optional) -->
+            <!-- Interests -->
             <div class="avoid-break">
                 <h3 class="text-slate-400 uppercase tracking-wider text-xs font-bold mb-4 border-b border-slate-700 pb-2">Interests</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    Photography, Minimalist Architecture, Hiking, Indie Game Development, Coffee Brewing.
-                </p>
+                <p id="interests-text" class="text-slate-400 text-sm leading-relaxed"></p>
             </div>
         </aside>
 
-        <!-- Right Content (Experience & Summary) -->
+        <!-- Right Content (Experience & Projects) -->
         <section class="w-full md:w-2/3 p-8 md:p-12 bg-white">
             
             <!-- Summary -->
@@ -259,9 +317,7 @@
                     </span>
                     About Me
                 </h2>
-                <p class="text-slate-600 leading-relaxed">
-                    Innovative Product Designer with 5+ years of experience transforming complex problems into elegant, user-centric solutions. Proven track record of leading design for high-traffic web applications. Passionate about bridging the gap between design and engineering to build scalable products.
-                </p>
+                <p id="summary-text" class="text-slate-600 leading-relaxed"></p>
             </div>
 
             <!-- Experience -->
@@ -272,49 +328,8 @@
                     </span>
                     Experience
                 </h2>
-
-                <!-- Job 1 -->
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                        <h3 class="text-lg font-bold text-slate-800">Senior Product Designer</h3>
-                        <span class="text-sm font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded">2021 - Present</span>
-                    </div>
-                    <p class="text-slate-500 italic mb-3">TechFlow Solutions • San Francisco, CA</p>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
-                        <li>Led the redesign of the core SaaS dashboard, resulting in a 25% increase in user engagement and a 15% drop in churn rate.</li>
-                        <li>Established a comprehensive Design System utilized by 5 cross-functional teams, reducing frontend development time by 30%.</li>
-                        <li>Mentored 3 junior designers and conducted weekly design critiques to foster a culture of continuous feedback.</li>
-                    </ul>
-                </div>
-
-                <!-- Job 2 -->
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                        <h3 class="text-lg font-bold text-slate-800">UX/UI Designer</h3>
-                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">2019 - 2021</span>
-                    </div>
-                    <p class="text-slate-500 italic mb-3">Creative Pulse Agency • Remote</p>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
-                        <li>Collaborated with clients to deliver responsive e-commerce websites for various fashion and retail brands.</li>
-                        <li>Conducted A/B testing on landing pages which increased conversion rates by an average of 12% across client projects.</li>
-                        <li>Created high-fidelity interactive prototypes in Figma for stakeholder presentations.</li>
-                    </ul>
-                </div>
-
-                <!-- Job 3 -->
-                <div class="relative pl-4 border-l-2 border-slate-200 avoid-break">
-                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-300 border-4 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                        <h3 class="text-lg font-bold text-slate-800">Frontend Developer Intern</h3>
-                        <span class="text-sm font-semibold text-slate-500 bg-slate-100 px-2 py-1 rounded">2018 - 2019</span>
-                    </div>
-                    <p class="text-slate-500 italic mb-3">StartUp Inc. • Ann Arbor, MI</p>
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
-                        <li>Assisted in the implementation of the company's marketing site using React and Tailwind CSS.</li>
-                        <li>Optimized image assets and code splitting, improving page load speeds by 40%.</li>
-                    </ul>
+                <div id="experience-list">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
 
@@ -326,33 +341,8 @@
                     </span>
                     Key Projects
                 </h2>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Project Card 1 -->
-                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all avoid-break">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">E-Commerce UI Kit</h3>
-                            <!-- <i class="fas fa-external-link-alt text-slate-400 text-xs"></i> -->
-                        </div>
-                        <p class="text-sm text-slate-500 mb-3">A complete open-source design system for online stores.</p>
-                        <div class="flex gap-2">
-                            <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Figma</span>
-                            <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">React</span>
-                        </div>
-                    </div>
-
-                    <!-- Project Card 2 -->
-                    <div class="group block border border-slate-200 rounded-lg p-4 hover:border-blue-400 hover:shadow-md transition-all avoid-break">
-                        <div class="flex justify-between items-center mb-2">
-                            <h3 class="font-bold text-slate-800 group-hover:text-blue-600 transition-colors">TaskMaster App</h3>
-                            <!-- <i class="fas fa-external-link-alt text-slate-400 text-xs"></i> -->
-                        </div>
-                        <p class="text-sm text-slate-500 mb-3">Productivity application focused on deep work techniques.</p>
-                        <div class="flex gap-2">
-                            <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">Mobile Design</span>
-                            <span class="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-0.5 rounded">UX</span>
-                        </div>
-                    </div>
+                <div id="projects-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
 
@@ -360,7 +350,7 @@
     </main>
 
     <footer class="no-print mt-12 mb-6 text-center text-slate-400 text-sm">
-        <p>&copy; 2024 Alex Jordan. Built with HTML & Tailwind CSS.</p>
+        <p>&copy; 2024 Built with HTML, Tailwind CSS & JSON Data.</p>
     </footer>
 
 </body>
