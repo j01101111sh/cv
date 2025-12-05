@@ -34,22 +34,18 @@
     ],
     "education": [
         {
-            "degree": "BS in Computer Science",
-            "school": "University of Michigan",
-            "year": "2014 - 2018"
+            "degree": "BS in Political Science",
+            "school": "University of Nebraska-Omaha",
+            "year": "2009 - 2014"
         }
     ],
     "skills": [
-        "Figma",
-        "Adobe XD",
-        "HTML/CSS",
-        "React JS",
-        "User Research",
-        "Prototyping",
-        "Wireframing"
+        "TBD 1",
+        "TBD 2",
+        "TBD 3"
     ],
-    "interests": "Photography, Minimalist Architecture, Hiking, Indie Game Development, Coffee Brewing.",
-    "summary": "Innovative Product Designer with 5+ years of experience transforming complex problems into elegant, user-centric solutions. Proven track record of leading design for high-traffic web applications. Passionate about bridging the gap between design and engineering to build scalable products.",
+    "interests": "TBD",
+    "summary": "Placeholder: Innovative Product Designer with 5+ years of experience transforming complex problems into elegant, user-centric solutions. Proven track record of leading design for high-traffic web applications. Passionate about bridging the gap between design and engineering to build scalable products.",
     "experience": [
         {
             "role": "Senior Product Designer",
