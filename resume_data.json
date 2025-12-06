@@ -47,16 +47,14 @@
     "summary": "I am an experienced Analyst and Manager dedicated to bridging the gap between raw data and real-world results. My passion lies in developing analysis that does more than just report numbers—it creates insights and drives performance. I thrive in cross-functional settings, partnering with diverse teams to solve complex problems under tight deadlines.",
     "experience": [
         {
-            "role": "Senior Product Designer",
-            "company": "TechFlow Solutions",
-            "location": "San Francisco, CA",
-            "period": "2021 - Present",
+            "role": "AVP, Operations Analytics",
+            "company": "CardWorks Servicing",
+            "location": "Remote",
+            "period": "2023 - Present",
             "colorClass": "bg-blue-500",
             "periodClass": "text-blue-600 bg-blue-50",
             "achievements": [
-                "Led the redesign of the core SaaS dashboard, resulting in a 25% increase in user engagement and a 15% drop in churn rate.",
-                "Established a comprehensive Design System utilized by 5 cross-functional teams, reducing frontend development time by 30%.",
-                "Mentored 3 junior designers and conducted weekly design critiques to foster a culture of continuous feedback."
+                "Served as the Business Owner for Contact Center Analytics, overseeing the end-to-end delivery of insights for credit card operations. Leveraged the full spectrum of analytics—from descriptive reporting to predictive modeling—to enhance day-to-day management. Additionally, partnered with leadership to measure the ROI and impact of large-scale strategic transformations."
             ]
         },
         {
