@@ -100,8 +100,9 @@
         // Fetch Data Function
         async function fetchResumeData() {
             try {
-                // This fetches the file 'resume_data.json' which should be in the same directory
-                const response = await fetch('resume_data.json');
+                // ADDED: Cache busting (?t=timestamp) to force browser to load fresh JSON every time
+                const response = await fetch('resume_data.json?t=' + new Date().getTime());
+                
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
