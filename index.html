@@ -47,9 +47,39 @@
             box-shadow: none !important;
             border-radius: 0 !important;
             margin: 0 !important;
-            max-width: 1024px !important; /* Enforce desktop width */
-            width: 1024px !important;     /* Enforce desktop width */
-            min-width: 1024px !important; /* Prevent shrinking */
+            /* Reverted to 816px (Standard Letter width) to prevent overflow */
+            max-width: 840px !important; 
+            width: 840px !important;     
+            min-width: 840px !important; 
+        }
+
+        /* PDF TEXT SIZE REDUCTION
+           These rules only apply during the PDF generation process.
+           They override Tailwind classes to make text smaller for print/PDF.
+        */
+        .pdf-capture .text-3xl { font-size: 1.5rem !important; }   /* Name */
+        .pdf-capture .text-2xl { font-size: 1.25rem !important; }  /* Section Headers */
+        .pdf-capture .text-lg { font-size: 1rem !important; }      /* Job Titles */
+        .pdf-capture .text-base { font-size: 0.85rem !important; } /* Company names/standard */
+        .pdf-capture .text-sm { font-size: 0.75rem !important; }   /* Body text/Dates */
+        .pdf-capture .text-xs { font-size: 0.65rem !important; }   /* Skills/Meta */
+        
+        /* Tighten line heights for PDF to save vertical space */
+        .pdf-capture p, 
+        .pdf-capture li, 
+        .pdf-capture div { 
+            line-height: 1.3 !important; 
+        }
+
+        /* PDF SCALING ADJUSTMENTS:
+           Height calculation: 11 inches at 96 DPI = 1056px.
+           We use 1050px to be safe and ensure it fits strictly on Page 1.
+        */
+        .pdf-capture aside {
+            height: 1050px !important;
+        }
+        .pdf-capture .ghost-spacer {
+            height: 1050px !important;
         }
         
         /* Page Break Utilities */
@@ -60,6 +90,7 @@
 
         /* Print Specific Styles */
         @media print {
+            @page { margin: 0; } /* Force browser print to 0 margin */
             body {
                 background-color: white;
             }
@@ -101,7 +132,7 @@
         // Fetch Data Function
         async function fetchResumeData() {
             try {
-                // ADDED: Cache busting (?t=timestamp) to force browser to load fresh JSON every time
+                // Cache busting (?t=timestamp) to force browser to load fresh JSON every time
                 const response = await fetch('resume_data.json?t=' + new Date().getTime());
                 
                 if (!response.ok) {
@@ -171,14 +202,16 @@
                 <!-- Added 'flow-root' class here to ensure border respects the float -->
                 <div class="mb-4 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full ${job.colorClass} border-4 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3">
+                    <!-- Added flex-wrap to prevent overflow on long headers -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3 flex-wrap gap-x-2">
                         <h3 class="text-lg font-bold text-slate-800">
                             ${job.role} 
                             <span class="text-slate-500 font-medium text-base"> • ${job.company}</span>
                         </h3>
-                        <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded mt-1 sm:mt-0">${job.period}</span>
+                        <!-- flex-shrink-0 prevents date from being squashed -->
+                        <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded mt-1 sm:mt-0 flex-shrink-0">${job.period}</span>
                     </div>
-                    ${job.description ? `<p class="text-slate-600 text-sm mb-2 leading-2">${job.description}</p>` : ''}
+                    ${job.description ? `<p class="text-slate-600 text-sm mb-2 leading-tight">${job.description}</p>` : ''}
                     <ul class="list-disc list-outside ml-4 text-slate-600 space-y-1 text-sm leading-[1.4]">
                         ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
                     </ul>
@@ -215,12 +248,13 @@
             element.classList.add('pdf-capture');
 
             const opt = {
-                // Reduced margins slightly to 0.4 to ensure sidebar fits nicely on Page 1
-                margin:       [0.4, 0], 
+                // MARGIN 0: This is crucial for eliminating the white strip on the left.
+                // The sidebar will now touch the absolute left edge of the PDF.
+                margin:       0, 
                 filename:     'Josh Odell Resume.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { 
-                    scale: 2, 
+                    scale: 3, 
                     useCORS: true, 
                     scrollY: 0, 
                     logging: false 
@@ -249,7 +283,7 @@
         document.addEventListener('DOMContentLoaded', fetchResumeData);
     </script>
 </head>
-<body class="text-slate-800 antialiased min-h-screen flex flex-col items-center py-8 sm:py-12">
+<body class="text-slate-800 antialiased min-h-screen flex flex-col items-center py-8 sm:py-4">
 
     <!-- Action Bar -->
     <div class="no-print fixed bottom-6 right-6 z-50 flex gap-2">
@@ -263,8 +297,8 @@
     <main id="resume-content" class="relative page-container bg-white w-full max-w-5xl shadow-xl rounded-lg overflow-hidden block clearfix print:shadow-none print:rounded-none">
         
         <!-- Left Sidebar (Personal Info & Skills) -->
-        <!-- Reduced height to 840px to strictly fit within Page 1 -->
-        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:absolute md:top-0 md:left-0 md:h-[840px] z-10 print:bg-slate-900 print:text-white">
+        <!-- Fixed height 1050px fits within page 1 when margins are 0 or small (Web View) -->
+        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:absolute md:top-0 md:left-0 md:h-[1050px] z-10 print:bg-slate-900 print:text-white">
             
             <!-- Header/Profile -->
             <div class="text-center md:text-left avoid-break">
@@ -312,9 +346,10 @@
         <section class="w-full p-8 md:p-12 bg-white">
             
             <!-- GHOST SPACER: invisible float to push content over on page 1 only -->
-            <!-- Reduced height to 840px to ensure text on Page 2 flows back to the left edge -->
-            <!-- Decreased buffer from 6rem to 3rem to reduce margin between sidebar and content -->
-            <div class="hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[840px]"></div>
+            <!-- Reduced height to 1050px to ensure text on Page 2 flows back to the left edge -->
+            <!-- Buffer reduced to 3rem to match recent request -->
+            <!-- Added ghost-spacer class for PDF targeting -->
+            <div class="ghost-spacer hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[1050px]"></div>
 
             <!-- Summary -->
             <div class="mb-4 avoid-break">
