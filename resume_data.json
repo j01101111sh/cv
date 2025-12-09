@@ -69,10 +69,10 @@
             "description": "Placeholder",
             "achievements": [
                 "Created reporting to support new client partnerships and other new programs.",
-"Automated reports used by accounting and compliance, saving an estimated 150 hours annually while improving accuracy and auditability.",
-"Utilized Agile methodologies to organize and track work for the data team.",
-"Worked with platform engineers to improve how data was stored in the database.",
-"Mentored data team members on advanced queries, best practices, and Agile methods."
+                "Automated reports used by accounting and compliance, saving an estimated 150 hours annually while improving accuracy and auditability.",
+                "Utilized Agile methodologies to organize and track work for the data team.",
+                "Worked with platform engineers to improve how data was stored in the database.",
+                "Mentored data team members on advanced queries, best practices, and Agile methods."
             ]
         },
         {
@@ -93,12 +93,18 @@
         {
             "title": "E-Commerce UI Kit",
             "description": "A complete open-source design system for online stores.",
-            "tags": ["Figma", "React"]
+            "tags": [
+                "Figma",
+                "React"
+            ]
         },
         {
             "title": "TaskMaster App",
             "description": "Productivity application focused on deep work techniques.",
-            "tags": ["Mobile Design", "UX"]
+            "tags": [
+                "Mobile Design",
+                "UX"
+            ]
         }
     ]
 }
