@@ -53,6 +53,7 @@
             "period": "2023 - Present",
             "colorClass": "bg-blue-500",
             "periodClass": "text-blue-600 bg-blue-50",
+            "description": "Placeholder.",
             "achievements": [
                 "Served as the Business Owner for Contact Center Analytics, overseeing the end-to-end delivery of insights for credit card operations. Leveraged the full spectrum of analytics—from descriptive reporting to predictive modeling—to enhance day-to-day management. Additionally, partnered with leadership to measure the ROI and impact of large-scale strategic transformations."
             ]
@@ -64,6 +65,7 @@
             "period": "2022 - 2023",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Placeholder",
             "achievements": [
                 "Created reporting to support new client partnerships and other new programs.",
 "Automated reports used by accounting and compliance, saving an estimated 150 hours annually while improving accuracy and auditability.",
@@ -79,6 +81,7 @@
             "period": "2018 - 2019",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Placeholder.",
             "achievements": [
                 "Assisted in the implementation of the company's marketing site using React and Tailwind CSS.",
                 "Optimized image assets and code splitting, improving page load speeds by 40%."
