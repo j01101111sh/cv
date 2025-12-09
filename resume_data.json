@@ -78,7 +78,7 @@
         {
             "role": "Data Analytics Manager",
             "company": "Hyatt",
-            "location": "Remote",
+            "location": "Omaha, NE / Remote",
             "period": "2018 - 2022",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
@@ -92,6 +92,24 @@
                 "Created same-day analysis dashboard for call volumes and handle times, shortening time to insight from 1-2 days to same-day.",
                 "Developed a process for allocating expenses from shared departments across locations to enable the analysis of the cost of operating at each site.",
                 "Discovered multiple billing errors from one vendor, totaling $500K; worked to negotiate credit."
+            ]
+        },
+        {
+            "role": "Data Analytics Manager",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2009 - 2018",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Created financial and performance analysis and presented it to senior leadership. Performed strategic planning of Call Center operations: vendor selection, organizational structure, project planning, and budgeting. Managed the Workforce Management team in controlling short term labor in line with volumes to meet service level and cost goals.",
+            "achievements": [
+                "Designed agent and supervisor sales incentive programs that increased sales by 15% year-over-year, reversing a multi-year trend of sales decline. Program also included handle time and customer satisfaction incentives, both of which improved during that time.",
+                "Implemented a change to the chat/email platform that reduced expenditure by 12%.",
+                "Contributed to agent attrition falling by 60% over two years.",
+                "Scaled overhead costs in line with declining volumes to limit per unit cost increase.",
+                "Created and rolled out 2 new positions within the Call Center that better aligned talent with needs: Applications Admin & Call Center Analyst.",
+                "Created a Call Center trends report to provide information to the warehouse and merchandising about the types of claims the Call Center was processing, allowing them to make changes to save costs.",
+                "Participated in multiple company-wide projects to roll out major changes to the business (e.g., new brands, new vendors, etc.) and ensure Call Center needs were considered."
             ]
         }
     ],
