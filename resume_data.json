@@ -76,16 +76,22 @@
             ]
         },
         {
-            "role": "Frontend Developer Intern",
-            "company": "StartUp Inc.",
-            "location": "Ann Arbor, MI",
-            "period": "2018 - 2019",
+            "role": "Data Analytics Manager",
+            "company": "Hyatt",
+            "location": "Remote",
+            "period": "2018 - 2022",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
-            "description": "Placeholder.",
+            "description": "Led business analytics team with responsibility for Tableau, ETL pipelines, SSRS reporting, SQL server management, and ad-hoc reporting. Translated end-user requirements and business objectives into highly functional reports in Tableau and SharePoint. Worked with users across different levels of the organization and around the world.",
             "achievements": [
-                "Assisted in the implementation of the company's marketing site using React and Tailwind CSS.",
-                "Optimized image assets and code splitting, improving page load speeds by 40%."
+                "Implemented data warehousing for KPI data to simplify, automate, and standardize the querying of this information across the department.",
+                "Set up Tableau Online deployment from scratch, saving analyst time by automating manual tasks and ad-hoc report requests.",
+                "Developed data literacy training program that was deployed globally to over 100 managers across the organization.",
+                "Created dynamic prototype of a pilot incentive program in Tableau which allowed users to see the effect of tweaks on individual payouts and total expenses.",
+                "Automated and standardized reporting done separately by multiple international managers through creation of Tableau dashboard, saving an estimated 400 hours of work annually.",
+                "Created same-day analysis dashboard for call volumes and handle times, shortening time to insight from 1-2 days to same-day.",
+                "Developed a process for allocating expenses from shared departments across locations to enable the analysis of the cost of operating at each site.",
+                "Discovered multiple billing errors from one vendor, totaling $500K; worked to negotiate credit."
             ]
         }
     ],
