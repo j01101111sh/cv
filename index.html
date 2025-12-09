@@ -48,9 +48,9 @@
             border-radius: 0 !important;
             margin: 0 !important;
             /* Reverted to 816px (Standard Letter width) to prevent overflow */
-            max-width: 840px !important; 
-            width: 840px !important;     
-            min-width: 840px !important; 
+            max-width: 816px !important; 
+            width: 816px !important;     
+            min-width: 816px !important; 
         }
 
         /* PDF TEXT SIZE REDUCTION
@@ -73,13 +73,14 @@
 
         /* PDF SCALING ADJUSTMENTS:
            Height calculation: 11 inches at 96 DPI = 1056px.
-           We use 1050px to be safe and ensure it fits strictly on Page 1.
+           Reduced to 1000px to ensure the spacer strictly ends on Page 1, 
+           preventing indentation on Page 2.
         */
         .pdf-capture aside {
-            height: 1050px !important;
+            height: 1000px !important;
         }
         .pdf-capture .ghost-spacer {
-            height: 1050px !important;
+            height: 1000px !important;
         }
         
         /* Page Break Utilities */
@@ -254,7 +255,7 @@
                 filename:     'Josh Odell Resume.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { 
-                    scale: 3, 
+                    scale: 2, 
                     useCORS: true, 
                     scrollY: 0, 
                     logging: false 
@@ -297,8 +298,8 @@
     <main id="resume-content" class="relative page-container bg-white w-full max-w-5xl shadow-xl rounded-lg overflow-hidden block clearfix print:shadow-none print:rounded-none">
         
         <!-- Left Sidebar (Personal Info & Skills) -->
-        <!-- Fixed height 1050px fits within page 1 when margins are 0 or small (Web View) -->
-        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:absolute md:top-0 md:left-0 md:h-[1050px] z-10 print:bg-slate-900 print:text-white">
+        <!-- Fixed height 1000px fits within page 1 when margins are 0 or small (Web View) -->
+        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:absolute md:top-0 md:left-0 md:h-[1000px] z-10 print:bg-slate-900 print:text-white">
             
             <!-- Header/Profile -->
             <div class="text-center md:text-left avoid-break">
@@ -346,10 +347,10 @@
         <section class="w-full p-8 md:p-12 bg-white">
             
             <!-- GHOST SPACER: invisible float to push content over on page 1 only -->
-            <!-- Reduced height to 1050px to ensure text on Page 2 flows back to the left edge -->
+            <!-- Reduced height to 1000px to ensure text on Page 2 flows back to the left edge -->
             <!-- Buffer reduced to 3rem to match recent request -->
             <!-- Added ghost-spacer class for PDF targeting -->
-            <div class="ghost-spacer hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[1050px]"></div>
+            <div class="ghost-spacer hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[1000px]"></div>
 
             <!-- Summary -->
             <div class="mb-4 avoid-break">
