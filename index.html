@@ -166,7 +166,8 @@
             // Experience
             const experienceList = document.getElementById('experience-list');
             experienceList.innerHTML = data.experience.map(job => `
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break">
+                <!-- Added 'flow-root' class here to ensure border respects the float -->
+                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full ${job.colorClass} border-4 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                         <h3 class="text-lg font-bold text-slate-800">${job.role}</h3>
@@ -308,7 +309,8 @@
             
             <!-- GHOST SPACER: invisible float to push content over on page 1 only -->
             <!-- Reduced height to 840px to ensure text on Page 2 flows back to the left edge -->
-            <div class="hidden md:block float-left w-[calc(33.333%+6rem)] -ml-12 h-[840px]"></div>
+            <!-- Decreased buffer from 6rem to 3rem to reduce margin between sidebar and content -->
+            <div class="hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[840px]"></div>
 
             <!-- Summary -->
             <div class="mb-10 avoid-break">
