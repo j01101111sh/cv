@@ -40,21 +40,30 @@
         }
     ],
     "skills": [
-        "TBD 1",
-        "TBD 2",
-        "TBD 3"
+        "Data Reporting & Storytelling",
+        "Advanced SQL",
+        "Data Modeling & Warehousing",
+        "Statistical Analysis & Forecasting",
+        "KPI Definition & Governance",
+        "Python",
+        "Excel",
+        "Vendor Management",
+        "Team Leadership & Development"
     ],
     "summary": "I am an experienced Analyst and Manager dedicated to bridging the gap between raw data and real-world results. My passion lies in developing analysis that does more than just report numbers—it creates insights and drives performance. I thrive in cross-functional settings, partnering with diverse teams to solve complex problems under tight deadlines.",
     "experience": [
         {
             "role": "AVP, Operations Analytics",
-            "company": "CardWorks Servicing",
+            "company": "CardWorks",
             "location": "Remote",
             "period": "2023 - Present",
             "colorClass": "bg-blue-500",
             "periodClass": "text-blue-600 bg-blue-50",
             "description": "Served as the owner for Operations Analytics, overseeing the end-to-end delivery of insights for credit card operations. Leveraged the full spectrum of analytics—from descriptive reporting to predictive modeling—to enhance day-to-day management.",
             "achievements": [
+                "Placeholder",
+                "Placeholder",
+                "Placeholder",
                 "Placeholder",
                 "Placeholder"
             ]
@@ -77,8 +86,8 @@
         },
         {
             "role": "Data Analytics Manager",
-            "company": "Hyatt",
-            "location": "Remote",
+            "company": "Hyatt Hotels Corporation",
+            "location": "Omaha, NE / Remote",
             "period": "2018 - 2022",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
@@ -92,6 +101,50 @@
                 "Created same-day analysis dashboard for call volumes and handle times, shortening time to insight from 1-2 days to same-day.",
                 "Developed a process for allocating expenses from shared departments across locations to enable the analysis of the cost of operating at each site.",
                 "Discovered multiple billing errors from one vendor, totaling $500K; worked to negotiate credit."
+            ]
+        },
+        {
+            "role": "Data Analytics Manager",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2016 - 2018",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Created financial and performance analysis and presented it to senior leadership. Performed strategic planning of Call Center operations: vendor selection, organizational structure, project planning, and budgeting. Managed the Workforce Management team in controlling short term labor in line with volumes to meet service level and cost goals.",
+            "achievements": [
+                "Designed agent and supervisor sales incentive programs that increased sales by 15% year-over-year, reversing a multi-year trend of sales decline. Program also included handle time and customer satisfaction incentives, both of which improved during that time.",
+                "Implemented a change to the chat/email platform that reduced expenditure by 12%.",
+                "Contributed to agent attrition falling by 60% over two years.",
+                "Scaled overhead costs in line with declining volumes to limit per unit cost increase.",
+                "Created and rolled out 2 new positions within the Call Center that better aligned talent with needs: Applications Admin & Call Center Analyst.",
+                "Created a Call Center trends report to provide information to the warehouse and merchandising about the types of claims the Call Center was processing, allowing them to make changes to save costs.",
+                "Participated in multiple company-wide projects to roll out major changes to the business (e.g., new brands, new vendors, etc.) and ensure Call Center needs were considered."
+            ]
+        },
+        {
+            "role": "Call Center Supervisor",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2014 - 2016",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Supervised and coached the chat and email customer service team. Coordinated with other departments (e.g., Warehouse, IT, Marketing) to fulfill customer requests as needed. Ensured proper communication between different groups within the Call Center. Improved team members’ knowledge and skills to develop bench strength for advanced positions.",
+            "achievements": [
+                "Developed training materials from scratch to allow for consistent training.",
+                "Revamped “canned” responses in chat platform to increase efficiency by 10%.",
+                "Rolled out overnight chat coverage for the first time."
+            ]
+        },
+        {
+            "role": "Call Center Chat/Email Specialist",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2009 - 2014",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Assisted customers with routine customer service actions (e.g., order tracking, claims, etc.). Gained perspective on the day-to-day work life of customer service agents, including their difficulties, which I used when I became their supervisor and in later roles.",
+            "achievements": [
+                "Performed at a high level, exceeding all measurable KPIs related to my position."
             ]
         }
     ],
