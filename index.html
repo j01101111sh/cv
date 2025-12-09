@@ -168,7 +168,7 @@
             const experienceList = document.getElementById('experience-list');
             experienceList.innerHTML = data.experience.map(job => `
                 <!-- Added 'flow-root' class here to ensure border respects the float -->
-                <div class="mb-6 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
+                <div class="mb-4 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full ${job.colorClass} border-4 border-white"></div>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3">
                         <h3 class="text-lg font-bold text-slate-800">
@@ -177,9 +177,8 @@
                         </h3>
                         <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded mt-1 sm:mt-0">${job.period}</span>
                     </div>
-                    <!-- Removed separate location paragraph -->
-                    ${job.description ? `<p class="text-slate-600 text-sm mb-3 leading-relaxed">${job.description}</p>` : ''}
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-1 text-sm leading-relaxed">
+                    ${job.description ? `<p class="text-slate-600 text-sm mb-2 leading-2">${job.description}</p>` : ''}
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-1 text-sm leading-[1.4]">
                         ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
                     </ul>
                 </div>
@@ -317,9 +316,9 @@
             <div class="hidden md:block float-left w-[calc(33.333%+3rem)] -ml-12 h-[840px]"></div>
 
             <!-- Summary -->
-            <div class="mb-10 avoid-break">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
-                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+            <div class="mb-4 avoid-break">
+                <h2 class="text-2xl font-bold text-slate-800 mb-3 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
                         <i class="fas fa-user"></i>
                     </span>
                     About Me
@@ -329,8 +328,8 @@
 
             <!-- Experience -->
             <div class="mb-10">
-                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+                <h2 class="text-2xl font-bold text-slate-800 mb-3 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
                         <i class="fas fa-briefcase"></i>
                     </span>
                     Experience
@@ -342,8 +341,8 @@
 
             <!-- Projects -->
             <div class="avoid-break">
-                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
+                <h2 class="text-2xl font-bold text-slate-800 mb-3 flex items-center gap-3">
+                    <span class="w-8 h-8 rounded bg-blue-100 text-blue-600 flex items-center justify-center text-lg">
                         <i class="fas fa-rocket"></i>
                     </span>
                     Key Projects
