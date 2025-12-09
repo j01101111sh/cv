@@ -114,6 +114,32 @@
                 "Created a Call Center trends report to provide information to the warehouse and merchandising about the types of claims the Call Center was processing, allowing them to make changes to save costs.",
                 "Participated in multiple company-wide projects to roll out major changes to the business (e.g., new brands, new vendors, etc.) and ensure Call Center needs were considered."
             ]
+        },
+        {
+            "role": "Call Center Supervisor",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2014 - 2016",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Supervised and coached the chat and email customer service team. Coordinated with other departments (e.g., Warehouse, IT, Marketing) to fulfill customer requests as needed. Ensured proper communication between different groups within the Call Center. Improved team members’ knowledge and skills to develop bench strength for advanced positions.",
+            "achievements": [
+                "Developed training materials from scratch to allow for consistent training.",
+                "Revamped “canned” responses in chat platform to increase efficiency by 10%.",
+                "Rolled out overnight chat coverage for the first time."
+            ]
+        },
+        {
+            "role": "Call Center Chat/Email Specialist",
+            "company": "Oriental Trading Company",
+            "location": "Omaha, NE",
+            "period": "2009 - 2014",
+            "colorClass": "bg-slate-300",
+            "periodClass": "text-slate-500 bg-slate-100",
+            "description": "Assisted customers with routine customer service actions (e.g., order tracking, claims, etc.). Gained perspective on the day-to-day work life of customer service agents, including their difficulties, which I used when I became their supervisor and in later roles.",
+            "achievements": [
+                "Performed at a high level, exceeding all measurable KPIs related to my position."
+            ]
         }
     ],
     "projects": [
