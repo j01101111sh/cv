@@ -168,15 +168,18 @@
             const experienceList = document.getElementById('experience-list');
             experienceList.innerHTML = data.experience.map(job => `
                 <!-- Added 'flow-root' class here to ensure border respects the float -->
-                <div class="mb-8 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
+                <div class="mb-6 relative pl-4 border-l-2 border-slate-200 avoid-break flow-root">
                     <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full ${job.colorClass} border-4 border-white"></div>
-                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                        <h3 class="text-lg font-bold text-slate-800">${job.role}</h3>
-                        <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded">${job.period}</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3">
+                        <h3 class="text-lg font-bold text-slate-800">
+                            ${job.role} 
+                            <span class="text-slate-500 font-medium text-base"> • ${job.company}</span>
+                        </h3>
+                        <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded mt-1 sm:mt-0">${job.period}</span>
                     </div>
-                    <p class="text-slate-500 italic mb-3">${job.company} • ${job.location}</p>
+                    <!-- Removed separate location paragraph -->
                     ${job.description ? `<p class="text-slate-600 text-sm mb-3 leading-relaxed">${job.description}</p>` : ''}
-                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
+                    <ul class="list-disc list-outside ml-4 text-slate-600 space-y-1 text-sm leading-relaxed">
                         ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
                     </ul>
                 </div>
