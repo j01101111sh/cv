@@ -58,16 +58,18 @@
             ]
         },
         {
-            "role": "UX/UI Designer",
-            "company": "Creative Pulse Agency",
+            "role": "Data Analytics Manager",
+            "company": "Notable Finance",
             "location": "Remote",
-            "period": "2019 - 2021",
+            "period": "2022 - 2023",
             "colorClass": "bg-slate-300",
             "periodClass": "text-slate-500 bg-slate-100",
             "achievements": [
-                "Collaborated with clients to deliver responsive e-commerce websites for various fashion and retail brands.",
-                "Conducted A/B testing on landing pages which increased conversion rates by an average of 12% across client projects.",
-                "Created high-fidelity interactive prototypes in Figma for stakeholder presentations."
+                "Created reporting to support new client partnerships and other new programs.",
+"Automated reports used by accounting and compliance, saving an estimated 150 hours annually while improving accuracy and auditability.",
+"Utilized Agile methodologies to organize and track work for the data team.",
+"Worked with platform engineers to improve how data was stored in the database.",
+"Mentored data team members on advanced queries, best practices, and Agile methods."
             ]
         },
         {
