@@ -253,12 +253,12 @@
     </div>
 
     <!-- Resume Container -->
-    <!-- Changed from flex to block/clearfix to support floats -->
-    <main id="resume-content" class="page-container bg-white w-full max-w-5xl shadow-xl rounded-lg overflow-hidden block clearfix print:shadow-none print:rounded-none">
+    <!-- relative positioning needed for absolute sidebar -->
+    <main id="resume-content" class="relative page-container bg-white w-full max-w-5xl shadow-xl rounded-lg overflow-hidden block clearfix print:shadow-none print:rounded-none">
         
         <!-- Left Sidebar (Personal Info & Skills) -->
-        <!-- Added float-left and min-height to ensure it covers page 1 and allows wrap on page 2 -->
-        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:float-left md:min-h-[1000px] print:bg-slate-900 print:text-white">
+        <!-- absolute on desktop to remove from flow, fixed height for 1 page -->
+        <aside class="w-full md:w-1/3 bg-slate-900 text-white p-8 flex flex-col gap-8 md:absolute md:top-0 md:left-0 md:h-[1080px] z-10 print:bg-slate-900 print:text-white">
             
             <!-- Header/Profile -->
             <div class="text-center md:text-left avoid-break">
@@ -302,9 +302,14 @@
         </aside>
 
         <!-- Right Content (Experience & Projects) -->
-        <!-- Removed md:w-2/3 restriction to allow full expansion on page 2 -->
+        <!-- w-full to allow expansion on page 2 -->
         <section class="w-full p-8 md:p-12 bg-white">
             
+            <!-- GHOST SPACER: invisible float to push content over on page 1 only -->
+            <!-- w-[calc(33%+3rem)] accounts for sidebar width + desired gap -->
+            <!-- -ml-12 counteracts the section padding to align ghost flush left with sidebar -->
+            <div class="hidden md:block float-left w-[calc(33.333%+2rem)] -ml-12 h-[1080px]"></div>
+
             <!-- Summary -->
             <div class="mb-10 avoid-break">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
