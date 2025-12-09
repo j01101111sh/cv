@@ -173,7 +173,7 @@
                         <h3 class="text-lg font-bold text-slate-800">${job.role}</h3>
                         <span class="text-sm font-semibold ${job.periodClass} px-2 py-1 rounded">${job.period}</span>
                     </div>
-                    <p class="text-slate-500 italic mb-3">${job.company} | ${job.location}</p>
+                    <p class="text-slate-500 italic mb-3">${job.company} • ${job.location}</p>
                     ${job.description ? `<p class="text-slate-600 text-sm mb-3 leading-relaxed">${job.description}</p>` : ''}
                     <ul class="list-disc list-outside ml-4 text-slate-600 space-y-2 text-sm leading-relaxed">
                         ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
